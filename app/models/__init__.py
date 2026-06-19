@@ -1,10 +1,10 @@
 from app.models.base import Base
 from app.models.customer import Customer
-from app.models.trademark import Trademark
-from app.models.user import User
+from app.models.trademark import Trademark, TrademarkStatus
+from app.models.user import User, UserRole
 from app.models.agency_entrustment import AgencyEntrustment
-from app.models.fee import Fee
-from app.models.material_version import MaterialVersion
+from app.models.fee import Fee, FeeType, FeeStatus
+from app.models.material_version import MaterialVersion, MaterialType
 from app.models.submission_record import SubmissionRecord
 from app.models.acceptance_receipt import AcceptanceReceipt
 from app.models.correction import Correction
@@ -16,10 +16,15 @@ __all__ = [
     "Base",
     "Customer",
     "Trademark",
+    "TrademarkStatus",
     "User",
+    "UserRole",
     "AgencyEntrustment",
     "Fee",
+    "FeeType",
+    "FeeStatus",
     "MaterialVersion",
+    "MaterialType",
     "SubmissionRecord",
     "AcceptanceReceipt",
     "Correction",

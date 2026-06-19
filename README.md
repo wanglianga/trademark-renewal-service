@@ -163,14 +163,19 @@ cp .env.example .env
 编辑 `.env` 文件，配置数据库连接等参数：
 ```env
 # 数据库配置
-POSTGRES_HOST=localhost
+# PostgreSQL 配置（Docker 部署时使用）
+POSTGRES_HOST=db
 POSTGRES_PORT=5432
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres123
 POSTGRES_DB=trademark_renewal
 
+# 数据库 URL 覆盖（可选），或启用 SQLite 作为本地开发数据库
+# DATABASE_URL=sqlite:///./trademark_renewal.db
+USE_SQLITE=True
+
 # 应用配置
-APP_HOST=0.0.0.0
+APP_HOST=127.0.0.1
 APP_PORT=8000
 APP_ENV=development
 
@@ -180,7 +185,22 @@ JWT_ALGORITHM=HS256
 JWT_ACCESS_TOKEN_EXPIRE_MINUTES=1440
 ```
 
-##### 3. 启动服务
+> **说明**：设置 `USE_SQLITE=True` 后，系统自动使用本地 SQLite 数据库，无需安装 PostgreSQL。如果 PostgreSQL 不可用，系统也会自动降级到 SQLite。
+
+##### 3. 初始化数据库（创建表和示例数据）
+
+```bash
+python init_db.py
+```
+
+将创建 3 个默认用户：
+- `admin` / `admin123`（管理员）
+- `agent` / `agent123`（代理人）
+- `finance` / `finance123`（财务）
+
+以及 1 个示例客户和 2 个示例商标。
+
+##### 4. 启动服务
 
 ```bash
 python main.py
@@ -188,10 +208,10 @@ python main.py
 
 或使用 uvicorn：
 ```bash
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-访问地址：http://localhost:8000
+访问地址：http://127.0.0.1:8000
 
 API 文档地址：
 - Swagger UI: http://localhost:8000/docs

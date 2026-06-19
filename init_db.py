@@ -1,4 +1,5 @@
-from app.core.database import engine, Base, SessionLocal
+from app.core.database import engine, SessionLocal
+from app.models.base import Base
 from app.models import User, Customer, Trademark
 from app.core.security import hash_password
 from app.utils.date_utils import calculate_grace_period_end

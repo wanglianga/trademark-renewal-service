@@ -14,6 +14,7 @@ router = APIRouter(prefix="/api/business", tags=["核心业务"])
 
 
 @router.get("/expiring-trademarks")
+@router.get("/expiring")
 def get_expiring_trademarks(
     days_threshold: int = Query(180, ge=1, le=365, description="临期天数阈值"),
     auto_generate_reminders: bool = Query(False, description="是否自动生成提醒"),
@@ -273,7 +274,7 @@ def pre_submission_check(
                         "issues": problems
                     })
 
-        if fees_ok:
+        if not fees_ok:
             for tid, fees in unpaid_fees.items():
                 issues.append({
                     "trademark_id": tid,

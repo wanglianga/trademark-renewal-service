@@ -9,6 +9,9 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str = "postgres123"
     POSTGRES_DB: str = "trademark_renewal"
 
+    DATABASE_URL: Optional[str] = None
+    USE_SQLITE: bool = False
+
     APP_HOST: str = "0.0.0.0"
     APP_PORT: int = 8000
     APP_ENV: str = "development"
@@ -30,7 +33,11 @@ class Settings(BaseSettings):
         case_sensitive = True
 
     @property
-    def DATABASE_URL(self) -> str:
+    def ACTIVE_DATABASE_URL(self) -> str:
+        if self.DATABASE_URL:
+            return self.DATABASE_URL
+        if self.USE_SQLITE:
+            return "sqlite:///./trademark_renewal.db"
         return f"postgresql+psycopg2://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
 
 

@@ -63,6 +63,7 @@ def get_progress_board(
 
 
 @router.get("/trademark/{trademark_id}", response_model=ProgressBoardResponse)
+@router.get("/{trademark_id}", response_model=ProgressBoardResponse)
 def get_trademark_progress(
     trademark_id: int,
     db: Session = Depends(get_db)
