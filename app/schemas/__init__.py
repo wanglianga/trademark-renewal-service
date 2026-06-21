@@ -2,7 +2,10 @@ from app.schemas.customer import CustomerBase, CustomerCreate, CustomerUpdate, C
 from app.schemas.trademark import TrademarkBase, TrademarkCreate, TrademarkUpdate, TrademarkResponse, TrademarkStatusUpdate
 from app.schemas.user import UserBase, UserCreate, UserUpdate, UserResponse, Token, TokenData, LoginRequest
 from app.schemas.fee import FeeBase, FeeCreate, FeeUpdate, FeeResponse
-from app.schemas.material import MaterialBase, MaterialCreate, MaterialUpdate, MaterialResponse, MaterialUploadResponse
+from app.schemas.material import (
+    MaterialBase, MaterialCreate, MaterialUpdate, MaterialResponse, MaterialUploadResponse,
+    CorrectionMaterialUploadRequest, MaterialVersionHistoryItem, CorrectionMaterialSummary
+)
 from app.schemas.submission import SubmissionBase, SubmissionCreate, SubmissionUpdate, SubmissionResponse
 from app.schemas.acceptance import AcceptanceBase, AcceptanceCreate, AcceptanceUpdate, AcceptanceResponse
 from app.schemas.correction import CorrectionBase, CorrectionCreate, CorrectionUpdate, CorrectionResponse
@@ -18,6 +21,13 @@ from app.schemas.common import (
     ProgressBoardResponse,
     ValidationIssue,
     TrademarkValidationResponse,
+    RiskMaterialItem,
+    RiskQueueItem,
+    AgentRiskSummary,
+    RiskQueueResponse,
+    CustomerReminderItem,
+    UrgencyLevel,
+    RenewalStage,
 )
 
 __all__ = [
@@ -26,6 +36,7 @@ __all__ = [
     "UserBase", "UserCreate", "UserUpdate", "UserResponse", "Token", "TokenData", "LoginRequest",
     "FeeBase", "FeeCreate", "FeeUpdate", "FeeResponse",
     "MaterialBase", "MaterialCreate", "MaterialUpdate", "MaterialResponse", "MaterialUploadResponse",
+    "CorrectionMaterialUploadRequest", "MaterialVersionHistoryItem", "CorrectionMaterialSummary",
     "SubmissionBase", "SubmissionCreate", "SubmissionUpdate", "SubmissionResponse",
     "AcceptanceBase", "AcceptanceCreate", "AcceptanceUpdate", "AcceptanceResponse",
     "CorrectionBase", "CorrectionCreate", "CorrectionUpdate", "CorrectionResponse",
@@ -37,4 +48,6 @@ __all__ = [
     "BulkOperationRequest", "BulkOperationResponse",
     "StageInfo", "ProgressBoardResponse",
     "ValidationIssue", "TrademarkValidationResponse",
+    "RiskMaterialItem", "RiskQueueItem", "AgentRiskSummary", "RiskQueueResponse",
+    "CustomerReminderItem", "UrgencyLevel", "RenewalStage",
 ]

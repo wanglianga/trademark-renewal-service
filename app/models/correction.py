@@ -11,11 +11,11 @@ class Correction(BaseModel):
     correction_type = Column(String(50))
     correction_reason = Column(Text, nullable=False)
     correction_requirements = Column(Text, nullable=False)
+    required_materials = Column(Text)
     deadline = Column(Date, nullable=False)
     is_overdue = Column(Boolean, default=False)
     correction_status = Column(String(50), default="pending")
     correction_content = Column(Text)
-    correction_materials = Column(Text)
     corrector = Column(String(100))
     correction_complete_date = Column(Date)
     resubmission_date = Column(Date)
@@ -28,3 +28,4 @@ class Correction(BaseModel):
     trademark_id = Column(Integer, ForeignKey("trademarks.id"), nullable=False)
 
     trademark = relationship("Trademark", back_populates="corrections")
+    material_versions = relationship("MaterialVersion", back_populates="correction")

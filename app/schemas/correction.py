@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel, Field
 
 
@@ -9,6 +9,7 @@ class CorrectionBase(BaseModel):
     correction_type: Optional[str] = Field(None, max_length=50, description="补正类型")
     correction_reason: str = Field(..., description="补正原因")
     correction_requirements: str = Field(..., description="补正要求")
+    required_materials: Optional[str] = Field(None, description="要求补齐的材料类型列表（逗号分隔）：power_of_attorney/subject_qualification/category_description/chinese_translation/other")
     deadline: date = Field(..., description="补正期限")
     is_overdue: bool = Field(default=False, description="是否逾期")
     correction_status: str = Field(default="pending", max_length=50, description="补正状态")

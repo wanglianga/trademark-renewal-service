@@ -25,6 +25,14 @@ class Settings(BaseSettings):
 
     RENEWAL_REMINDER_DAYS: int = 180
     GRACE_PERIOD_MONTHS: int = 6
+    RENEWAL_PERIOD_MONTHS: int = 12
+
+    RENEWAL_OFFICIAL_FEE: float = 1000.0
+    GRACE_PERIOD_LATE_FEE_RATE: float = 0.25
+    GRACE_PERIOD_LATE_FEE_BASE: float = 500.0
+    FEE_CURRENCY: str = "CNY"
+
+    PROCESSING_BUFFER_DAYS: int = 7
 
     TIMEZONE: str = "Asia/Shanghai"
 
